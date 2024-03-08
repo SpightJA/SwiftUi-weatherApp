@@ -5,7 +5,6 @@
 //  Created by Jon Spight on 3/7/24.
 //
 
-//IDEA - build a model and refactor Hstack with an array
 //IDEA - get real Weather api data
 //IDEA - Build a tab bar that shows multiple cities
 
@@ -23,26 +22,11 @@ struct ContentView: View {
                 MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill", temp: 76)
                 
                 HStack(spacing: 20){
-                    WeatherDayView(dayOfWeek: "Tue",
-                                   imageName: "cloud.sun.fill",
-                                   temp: 74)
-                    WeatherDayView(dayOfWeek: "Wed",
-                                   imageName: "sun.max.fill",
-                                   temp: 70)
-                    WeatherDayView(dayOfWeek: "Thurs",
-                                   imageName: "wind",
-                                   temp: 66)
-                    WeatherDayView(dayOfWeek: "Fri",
-                                   imageName: "sun.and.horizon.fill",
-                                   temp: 60)
-                    WeatherDayView(dayOfWeek: "Sat",
-                                   imageName: "moon.stars.fill",
-                                   temp: 55)
-
-                    
-                }
+                    ForEach(Days().days, id: \.self){ day in
+                        WeatherDayView(dayOfWeek: day.title, imageName: day.imageName, temp: day.temp)
+                        }
+                    }
                 Spacer()
-                
                 Button {
                     isNight.toggle()
                 } label: {
@@ -51,11 +35,11 @@ struct ContentView: View {
                                   backgroundColor: .yellow )
                 }
                 Spacer()
+                }
             }
-            
         }
     }
-}
+
 
 #Preview {
     ContentView()
