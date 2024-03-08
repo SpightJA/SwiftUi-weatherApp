@@ -5,6 +5,10 @@
 //  Created by Jon Spight on 3/7/24.
 //
 
+//IDEA - build a model and refactor Hstack with an array
+//IDEA - get real Weather api data
+//IDEA - Build a tab bar that shows multiple cities
+
 import SwiftUI
 
 struct ContentView: View {
@@ -68,7 +72,7 @@ struct WeatherDayView: View {
                 .font(.system(size: 24, weight: .regular, design: .default))
                 .foregroundColor(.white)
             Image(systemName: imageName)
-                .renderingMode(.original)
+                .symbolRenderingMode(.multicolor)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 40, height: 40)
@@ -81,10 +85,7 @@ struct WeatherDayView: View {
 }
 
 struct BackgroundView: View {
-    
     var isNight     : Bool
-
-    
     var body: some View {
         LinearGradient(gradient: Gradient(colors: [isNight ? .black : .blue, isNight ? .gray : .lightBlue]),
                        startPoint: .topLeading,
@@ -109,7 +110,7 @@ struct MainWeatherStatusView: View {
     var body: some View {
         VStack (spacing: 8) {
             Image(systemName: imageName)
-                .renderingMode(.original)
+                .symbolRenderingMode(.multicolor)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 180, height: 180)
